@@ -48,13 +48,40 @@ class list{
         return head;
     }
 
+    list* insertBefore(list* head, int value,int newvalue){
+        if (head == NULL){
+            return NULL;
+        }
+        if (head->value == value){
+            list* newlist = new list(newvalue);
+            newlist->next = head;
+            return newlist;
+        }
+        head->next = insertBefore(head->next,value,newvalue);
+        return head;
+    }
+
+    list* insertAtEnd(list* head,int newvalue){
+        list* newlist = new list(newvalue);
+        if(head==NULL){
+            return NULL;
+        }
+        list *temp = head;
+        while(temp->next!= NULL){
+            temp = temp->next;
+        }
+        temp->next = newlist;
+
+        return head;
+    } 
+
 };
 
 int main(){
     cout << "\t Linked List \t\n";
 
     list *one = new list(30);
-    list *two = new list(40);
+    list *two = new list(50);
     
     one->next = two;
     two->next = NULL;
@@ -63,9 +90,10 @@ int main(){
     list temp;
 
     head = head->InsertAtFront(head,10);
-    head = head->insertAfter(head,1,20);
+    head = head->insertAfter(head,10,20);
+    head = head->insertBefore(head,50,40);
+    head = head->insertAtEnd(head,60);
     temp.printlist(head);
-
 
     return 0;
 }
