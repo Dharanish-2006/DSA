@@ -3,10 +3,14 @@ using namespace std;
 
 class list{
     public:
+    
     int value;
     list *next;
+    
     public:
+    
     list(){}    
+    
     list(int newvalue){
         value = newvalue;
         next = NULL;
@@ -15,7 +19,7 @@ class list{
     void printlist(list *head){
         cout << "Printing all the Elements : \n";
         list *temp = head;
-        int i = 0;
+        int i = 1;
         while(temp!=NULL){
             cout << "Element " << i++ << " : " << temp->value << "\n";
             temp = temp->next;
@@ -99,6 +103,58 @@ class list{
         return head;
     }
 
+    list* DeleteHead(list* head){
+        if(head==NULL){
+            return NULL;
+        }
+        list *temp = head;
+        head = head->next;
+        delete temp;
+        return head;
+    }
+
+    list* pop(list* head){
+        if(head==NULL){
+            return NULL;
+        }
+        if(head->next==NULL){
+            delete head;
+            return NULL;
+        }
+        list* temp = head;
+        while(temp->next->next!=NULL){
+            temp = temp->next;
+        }
+        delete temp->next;
+        temp->next = NULL;
+
+        return head;
+    }
+    
+    list* DeleteAtPosition(list* head,int position){
+        list *original;
+        list *temp = head;
+        if(temp == NULL){
+            return NULL;
+        }
+        if(position==1){
+            return DeleteHead(head);
+        }
+        for (int i = 1; i != position ; i++){
+            original = temp;
+            temp = temp->next;
+        }
+        if(temp!=NULL){
+            original->next = temp->next;
+            delete temp;
+        }else{
+            cout << "Data Not in List";
+        }
+        
+
+        return head;
+    }
+
 };
 
 int main(){
@@ -117,7 +173,12 @@ int main(){
     head = head->insertAfter(head,10,20);
     head = head->insertBefore(head,50,40);
     head = head->insertAtEnd(head,60);
+    head = head->insertAtEnd(head,70);
     head = head->insertAtPosition(head,2,100); 
+    head = head->InsertAtFront(head,500);
+    head = head->DeleteHead(head);
+    head = head->pop(head);
+    head = head->DeleteAtPosition(head,3);
     temp.printlist(head);
 
     return 0;
