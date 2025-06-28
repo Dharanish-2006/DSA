@@ -75,6 +75,30 @@ class list{
         return head;
     } 
 
+    list* insertAtPosition(list* head, int position,int newvalue){
+        
+        if(position==0){
+            return head;
+        }
+        if(position==1){
+            list* newlist = new list(newvalue);
+            newlist->next = head;
+            return newlist;
+        }
+        list* temp = head;
+        for (int i = 1; i < position-1 && temp->next!=NULL; i++){
+            temp = temp->next;
+        }
+        if(temp==NULL){
+            return head;
+        }
+        list* newlist = new list(newvalue);
+        newlist->next = temp->next;
+        temp->next= newlist;
+
+        return head;
+    }
+
 };
 
 int main(){
@@ -93,6 +117,7 @@ int main(){
     head = head->insertAfter(head,10,20);
     head = head->insertBefore(head,50,40);
     head = head->insertAtEnd(head,60);
+    head = head->insertAtPosition(head,2,100); 
     temp.printlist(head);
 
     return 0;
