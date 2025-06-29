@@ -162,12 +162,58 @@ class Dlist{
         Dlist* priv;
         Dlist* next;
     Dlist(){}
+    
     Dlist(int value){
         this->data = value;
         this->next = nullptr;
         this->priv = nullptr;
     }
 
+    Dlist* insertAtFront(Dlist* head,int value){
+        Dlist* newlist = new Dlist(value);
+        if(head==nullptr){
+            head = newlist;
+        }
+        newlist->next = head;
+        head->priv = newlist;
+        head = newlist;
+
+        return head;
+    }
+    Dlist* insertAtEnd(Dlist* head,int value){
+        Dlist* newlist = new Dlist(value);
+
+        if(head==nullptr){
+            head = newlist;
+        }
+        Dlist* temp = head;
+        while (temp->next != nullptr){
+            temp = temp->next;
+        }
+        temp->next = newlist;
+        newlist->priv = temp;
+
+        return head;
+    }
+    Dlist* insertAtPosition(Dlist* head,int target,int value){
+        if(target==1){
+            head = head->insertAtFront(head,value);
+            return head;
+        }
+        Dlist* newlist = new Dlist(value);
+        Dlist* temp = head;
+        for (int i = 1; i < target-1 && temp!=nullptr; i++){
+            temp = temp->next;
+        }
+        if (temp==nullptr){
+            cout<<"Invalid Position";
+        }
+        newlist->next = temp->next;
+        newlist->priv = temp;
+        temp->next = newlist;
+        
+        return head;
+    }
 
 };
 
@@ -199,18 +245,19 @@ int main(){
     cout << "\t Doubly Linked List \t\n";
     Dlist *one = new Dlist(1);
     Dlist *two = new Dlist(2);
-    Dlist *three = new Dlist(3);
     
     one->next = two;
     two->priv = one;
-    two->next = three;
-    three->priv = two;
 
     Dlist *head = one;
+    head = head->insertAtFront(head,0);
+    head = head->insertAtEnd(head,100);
+    head = head->insertAtPosition(head,2,200);
     Dlist temp;
 
+    int i = 1;
     while (head!=nullptr){
-        cout<<"Element : "<<head->data<<"\n";
+        cout<<"Element "<<i++<<" : "<<head->data<<"\n";
         head = head->next;
     }
     
