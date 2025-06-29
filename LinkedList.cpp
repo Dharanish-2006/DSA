@@ -214,6 +214,25 @@ class Dlist{
         
         return head;
     }
+    Dlist* DeleteAtFront(Dlist* head){
+        if(head==nullptr){
+            cout<<"list is empty";
+        }
+        Dlist* temp = head;
+        head = head->next;
+        if(head!=nullptr){
+            head->priv = nullptr;
+        }
+        delete temp;
+        return head;
+    }
+    Dlist* pop(Dlist* head){
+        if(head==nullptr){
+            cout<<"list is empty";
+        }
+        
+        return head;
+    }
 
 };
 
@@ -253,6 +272,7 @@ int main(){
     head = head->insertAtFront(head,0);
     head = head->insertAtEnd(head,100);
     head = head->insertAtPosition(head,2,200);
+    head = head->DeleteAtFront(head);
     Dlist temp;
 
     int i = 1;
