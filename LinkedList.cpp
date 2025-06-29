@@ -34,7 +34,7 @@ class list{
 
     list* insertAfter(list *head,int value,int newvalue){
         list* temp = head;
-        while (temp->next!=NULL){
+        while (temp!=NULL){
             if(temp->value==value){
                 break;
             }
@@ -68,7 +68,7 @@ class list{
     list* insertAtEnd(list* head,int newvalue){
         list* newlist = new list(newvalue);
         if(head==NULL){
-            return NULL;
+            return new list(newvalue);;
         }
         list *temp = head;
         while(temp->next!= NULL){
@@ -140,7 +140,7 @@ class list{
         if(position==1){
             return DeleteHead(head);
         }
-        for (int i = 1; i != position ; i++){
+        for (int i = 1;i < position && temp != NULL; i++){
             original = temp;
             temp = temp->next;
         }
@@ -150,36 +150,70 @@ class list{
         }else{
             cout << "Data Not in List";
         }
-        
-
         return head;
     }
 
 };
 
-int main(){
-    cout << "\t Linked List \t\n";
+class Dlist{
 
-    list *one = new list(30);
-    list *two = new list(50);
+    public:
+        int data;
+        Dlist* priv;
+        Dlist* next;
+    Dlist(){}
+    Dlist(int value){
+        this->data = value;
+        this->next = nullptr;
+        this->priv = nullptr;
+    }
+
+
+};
+
+int main(){
+    // cout << "\t Singly Linked List \t\n";
+
+    // list *one = new list(30);
+    // list *two = new list(50);
+    
+    // one->next = two;
+    // two->next = NULL;
+
+    // list *head = one;
+    // list temp;
+
+    // head = head->InsertAtFront(head,10);
+    // head = head->insertAfter(head,10,20);
+    // head = head->insertBefore(head,50,40);
+    // head = head->insertAtEnd(head,60);
+    // head = head->insertAtEnd(head,70);
+    // head = head->insertAtPosition(head,2,100); 
+    // head = head->InsertAtFront(head,500);
+    // head = head->DeleteHead(head);
+    // head = head->pop(head);
+    // head = head->DeleteAtPosition(head,3);
+    // temp.printlist(head);
+    // delete head;
+
+    cout << "\t Doubly Linked List \t\n";
+    Dlist *one = new Dlist(1);
+    Dlist *two = new Dlist(2);
+    Dlist *three = new Dlist(3);
     
     one->next = two;
-    two->next = NULL;
+    two->priv = one;
+    two->next = three;
+    three->priv = two;
 
-    list *head = one;
-    list temp;
+    Dlist *head = one;
+    Dlist temp;
 
-    head = head->InsertAtFront(head,10);
-    head = head->insertAfter(head,10,20);
-    head = head->insertBefore(head,50,40);
-    head = head->insertAtEnd(head,60);
-    head = head->insertAtEnd(head,70);
-    head = head->insertAtPosition(head,2,100); 
-    head = head->InsertAtFront(head,500);
-    head = head->DeleteHead(head);
-    head = head->pop(head);
-    head = head->DeleteAtPosition(head,3);
-    temp.printlist(head);
+    while (head!=nullptr){
+        cout<<"Element : "<<head->data<<"\n";
+        head = head->next;
+    }
+    
 
     return 0;
 }
