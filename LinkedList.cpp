@@ -184,7 +184,7 @@ class Dlist{
         Dlist* newlist = new Dlist(value);
 
         if(head==nullptr){
-            head = newlist;
+            return newlist;
         }
         Dlist* temp = head;
         while (temp->next != nullptr){
@@ -207,9 +207,13 @@ class Dlist{
         }
         if (temp==nullptr){
             cout<<"Invalid Position";
+            return head;
         }
         newlist->next = temp->next;
         newlist->priv = temp;
+        if (temp->next != nullptr) {
+            temp->next->priv = newlist;
+        }
         temp->next = newlist;
         
         return head;
@@ -230,8 +234,58 @@ class Dlist{
         if(head==nullptr){
             cout<<"list is empty";
         }
-        
+        Dlist* temp = head;
+        if(temp->next == nullptr){
+            head = nullptr;
+            delete temp;
+        }
+        while(temp->next!=nullptr){
+            temp = temp->next;
+        }
+        temp->priv->next = nullptr;
+        delete temp;
         return head;
+    }
+    Dlist* DeleteAtPosition(Dlist* head,int target){
+        if(head==nullptr){
+            cout<<"list is empty";
+        }
+        if(target==1){
+            return DeleteAtFront(head);
+        }
+        Dlist* temp = head;
+        for(int i = 1; i < target && temp!=nullptr; i++){
+            temp = temp->next;
+        }
+        if(temp == nullptr){
+            cout<<"Positon is Invalid";
+        }
+        if(temp->next!=nullptr){
+            temp->next->priv = temp->priv;
+        }
+        if(temp->priv!=nullptr){
+            temp->priv->next = temp->next;
+        }
+        delete temp;
+        return head;
+    }
+    void printList(Dlist* head){
+        int i = 1;
+        while (head!=nullptr){
+            cout<<"Element "<<i++<<" : "<<head->data<<"\n";
+            head = head->next;
+        }
+    }
+    void reverse(Dlist* head){
+        int i = 1;
+        Dlist* temp = head;
+        while (temp->next!=nullptr){
+            temp = temp->next;
+        }
+        while (temp!=nullptr){
+            cout<<"Element "<<i++<<" : "<<temp->data<<"\n";
+            temp = temp->priv;
+        }
     }
 
 };
@@ -273,14 +327,13 @@ int main(){
     head = head->insertAtEnd(head,100);
     head = head->insertAtPosition(head,2,200);
     head = head->DeleteAtFront(head);
+    head = head->pop(head);
+    head = head->DeleteAtPosition(head,2);
     Dlist temp;
-
-    int i = 1;
-    while (head!=nullptr){
-        cout<<"Element "<<i++<<" : "<<head->data<<"\n";
-        head = head->next;
-    }
     
+    temp.printList(head);
+    cout<<"\n\n";
+    temp.reverse(head);
 
     return 0;
 }
