@@ -1,0 +1,78 @@
+1 Create A Page Using Html Tags
+
+<html>
+<head><title> 
+sivet college
+</title></head>
+<body>
+<center>
+<h1><b>SIVET COLLEGE</b></h1><br>
+<h2>[SELF FINANCE]</h2><br>
+<font size=5 color=red>
+Accredited with B++ by NAAC.<br> 
+Affiliated to University of Madras<br> 
+A Co-Educational Institution<br>
+</font>
+<imgsrc=logo.png><br>
+<h2>II BSC[CS]</h2>
+<a href=www.sivet.in>college website</a><br>
+<p>
+Velachery Main Road,Gowrivakkam,chennai-600 073. 
+phone:044-2278 0037.
+</p>
+</center>
+</body>
+</html>
+
+2 Multiplication table 
+
+<!DOCTYPE html>
+<html>
+  <title>simple Multiplication Table</title>
+  <h2 style="text-align:center">Multiplication Table</h2>
+</html><table id="t" style="border-collapse:collapse;margin:auto"></table>
+<script>
+for(let i=0;i<=10;i++){
+  let r="<tr>";
+  for(let j=0;j<=10;j++)
+    r+=i&&j?`<td style="border:1px solid #000;padding:5px;text-align:center">${i*j}</td>`
+      :i?`<th style="border:1px solid #000;padding:5px;text-align:center">${i}</th>`
+      :j?`<th style="border:1px solid #000;padding:5px;text-align:center">${j}</th>`
+      :`<th style="border:1px solid #000;padding:5px;text-align:center">x</th>`;
+  t.innerHTML+=r+"</tr>";
+}
+</script>
+
+3 CREATE LIST IN HTML
+<!DOCTYPE html>
+<html>
+<body>
+<h3>Dyanamic List of Fruits</h3>
+<ul id=fruitList></ul>
+<script>
+[‘Apple’,’Banana’,’Cherry’,’Date’,’Fig’,’Grape’,’Orange’]
+.forEach(f=>fruitList.innerHTML+=`<li>${f}</li>`);
+</script>
+</body>
+</html>
+
+4 COLOR STYLE IN CSS
+
+<!DOCTYPE html>
+<html>
+<head>
+<title> Color Example!</title>
+<style>
+body{background:#eee;color:#333;font-family:Arial;margin:20px}
+h1{color:orange;border-bottom:2px solid orange}
+p{background:#fff;padding:10px;border-left:5px solid orange}
+</style>
+</head>
+<body>
+<h1>Welcome To My Colorful Page!</h1>
+<p>This paragraph has a white background and orange border.The text color is a medium gray</p>
+<p>feel free to experiment with different coiors in the css</p>
+</body>
+</html>
+
+
