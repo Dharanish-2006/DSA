@@ -1,78 +1,108 @@
-1 Create A Page Using Html Tags
 
-<html>
-<head><title> 
-sivet college
-</title></head>
-<body>
-<center>
-<h1><b>SIVET COLLEGE</b></h1><br>
-<h2>[SELF FINANCE]</h2><br>
-<font size=5 color=red>
-Accredited with B++ by NAAC.<br> 
-Affiliated to University of Madras<br> 
-A Co-Educational Institution<br>
-</font>
-<imgsrc=logo.png><br>
-<h2>II BSC[CS]</h2>
-<a href=www.sivet.in>college website</a><br>
-<p>
-Velachery Main Road,Gowrivakkam,chennai-600 073. 
-phone:044-2278 0037.
-</p>
-</center>
-</body>
-</html>
+1 *. Build a Simple Interest Calculator* 
 
-2 Multiplication table 
+Problem Statement:
 
-<!DOCTYPE html>
-<html>
-  <title>simple Multiplication Table</title>
-  <h2 style="text-align:center">Multiplication Table</h2>
-</html><table id="t" style="border-collapse:collapse;margin:auto"></table>
-<script>
-for(let i=0;i<=10;i++){
-  let r="<tr>";
-  for(let j=0;j<=10;j++)
-    r+=i&&j?`<td style="border:1px solid #000;padding:5px;text-align:center">${i*j}</td>`
-      :i?`<th style="border:1px solid #000;padding:5px;text-align:center">${i}</th>`
-      :j?`<th style="border:1px solid #000;padding:5px;text-align:center">${j}</th>`
-      :`<th style="border:1px solid #000;padding:5px;text-align:center">x</th>`;
-  t.innerHTML+=r+"</tr>";
-}
-</script>
+Create a simple interest calculator using HTML and JavaScript. The user should 
+enter principal amount, rate of interest, and time. When the “Calculate” button is 
+clicked, the result should be displayed below.
 
-3 CREATE LIST IN HTML
-<!DOCTYPE html>
-<html>
-<body>
-<h3>Dyanamic List of Fruits</h3>
-<ul id=fruitList></ul>
-<script>
-[‘Apple’,’Banana’,’Cherry’,’Date’,’Fig’,’Grape’,’Orange’]
-.forEach(f=>fruitList.innerHTML+=`<li>${f}</li>`);
-</script>
-</body>
-</html>
-
-4 COLOR STYLE IN CSS
+Techniques Required:
+1. HTML form elements (<input>, <button>)
+2. JavaScript DOM access and event handling
+3. Basic arithmetic operations
 
 <!DOCTYPE html>
 <html>
 <head>
-<title> Color Example!</title>
-<style>
-body{background:#eee;color:#333;font-family:Arial;margin:20px}
-h1{color:orange;border-bottom:2px solid orange}
-p{background:#fff;padding:10px;border-left:5px solid orange}
-</style>
+  <title>Simple Interest </title>
 </head>
 <body>
-<h1>Welcome To My Colorful Page!</h1>
-<p>This paragraph has a white background and orange border.The text color is a medium gray</p>
-<p>feel free to experiment with different coiors in the css</p>
+
+  
+    <h2>Simple Interest Calculator</h2>
+
+    <label>Principal Amount (₹):</label><br>
+    <input type="number" id="principal" placeholder="Enter principal"><br>
+
+    <label>Rate of Interest (%):</label><br>
+    <input type="number" id="rate" placeholder="Enter rate"><br>
+
+    <label>Time (in years):</label><br>
+    <input type="number" id="time" placeholder="Enter time"><br>
+
+    <button onclick="calculateInterest()">Calculate</button>
+
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function calculateInterest() {
+      let principal = document.getElementById("principal").value;
+      let rate = document.getElementById("rate").value;
+      let time = document.getElementById("time").value;
+
+      if (principal === "" || rate === "" || time === "") {
+        document.getElementById("result").innerHTML = " Please fill in all fields.";
+        return;
+      }
+
+      let simpleInterest = (principal * rate * time) / 100;
+      document.getElementById("result").innerHTML = 
+        `Simple Interest = ₹${simpleInterest.toFixed(2)}`;
+    }
+  </script>
+
 </body>
 </html>
+Program 2
 
+2. Digital Clock Display
+Problem Statement:
+Create a webpage that displays the current time in hours, minutes, and seconds. 
+The time should update every second using JavaScript. Style the clock using CSS 
+to make it visually appealing.
+Techniques Required:
+1. HTML structure
+2. CSS styling (fonts, colors, alignment)
+3. JavaScript Date object and setInterval()
 
+<!DOCTYPE html>
+<html>
+<head>
+<title>Digital Clock </title>
+</head>
+<body>
+
+  <div class="clock">
+    <h1>Current Time</h1>
+    <div class="time" id="clock"></div>
+  </div>
+
+  <script>
+    function updateClock() {
+      let now = new Date();
+
+      let hours = now.getHours();
+      let minutes = now.getMinutes();
+      let seconds = now.getSeconds();
+
+      
+      hours = (hours < 10) ? "0" + hours : hours;
+      minutes = (minutes < 10) ? "0" + minutes : minutes;
+      seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+      
+      document.getElementById("clock").innerHTML =
+        `<span>${hours}</span> : <span>${minutes}</span> : <span>${seconds}</span>`;
+    }
+
+    
+    setInterval(updateClock, 1000);
+
+    
+    updateClock();
+  </script>
+
+</body>
+</html>
